@@ -1,0 +1,381 @@
+---
+title: "Untitled"
+output: html_document
+date: "2024-09-10"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir = "C:/Users/javie/OneDrive - Universidad Politécnica de Madrid/MASTER")
+```
+
+```{r}
+library(shiny)
+```
+
+
+```{r}
+#getwd()
+setwd("C:/Users/javie/OneDrive - Universidad Politécnica de Madrid/MASTER")
+
+dir.create("App-1", showWarnings = FALSE)
+
+getwd()
+
+```
+
+
+```{r}
+list.dirs()
+```
+
+```{r}
+# Definir el contenido del archivo app.R
+app_code <- c(
+  "library(shiny)",
+  "library(bslib)",
+  "",
+  "# Define UI for app that draws a histogram ----",
+  "ui <- page_sidebar(",
+  "  title = 'Hello World!',",
+  "  sidebar = sidebar(",
+  "    sliderInput(",
+  "      inputId = 'bins',",
+  "      label = 'Number of bins:',",
+  "      min = 5,",
+  "      max = 50,",
+  "      value = 30",
+  "    )",
+  "  ),",
+  "  plotOutput(outputId = 'distPlot')",
+  ")",
+  "",
+  "# Define server logic required to draw a histogram ----",
+  "server <- function(input, output) {",
+  "  output$distPlot <- renderPlot({",
+  "    x <- faithful$waiting",
+  "    bins <- seq(min(x), max(x), length.out = input$bins + 1)",
+  "    hist(x, breaks = bins, col = '#007bc2', border = 'orange',",
+  "         xlab = 'Waiting time to next eruption (in mins)',",
+  "         main = 'Histogram of waiting times')",
+  "  })",
+  "}",
+  "",
+  "# Execute the application",
+  "shinyApp(ui = ui, server = server)"
+)
+
+# Crear y escribir en el archivo app.R
+fileConn <- file("app.R")
+writeLines(app_code, fileConn)
+close(fileConn)
+
+```
+
+```{r}
+list.files("App-1")
+
+```
+
+```{r}
+library(shiny)
+runApp("app.R", display.mode = "showcase")
+```
+#LESSON 2 
+
+```{r}
+# Definir el contenido del archivo app.R
+
+# Define UI ----
+ui <- page_sidebar(
+  title = "My Shinny App",
+  sidebar = sidebar("Shinny is available on CRAN, so you can install it in
+                    the usual way from your R console:"),
+  card(
+    card_header("Introducing Shinny"),
+    "Shiny is a package from Posit that makes it incredibly easy to build interactive web     applications with R. For an introduction and live examples, visit the Shiny homepage     (https://shiny.posit.co).",
+    card_image(src = "www/shiny.svg", height = "300px"),
+    card_footer("Shiny is a product from Posit"),
+    
+  )
+)
+
+# Define server logic ----
+server <- function(input, output) {
+
+}
+
+# Run the app ----
+shinyApp(ui = ui, server = server)
+
+
+# Crear y escribir en el archivo app.R
+fileConn <- file("app.R")
+writeLines(app_code, fileConn)
+close(fileConn)
+
+```
+
+#LESSON 3
+
+```{r}
+ui <- page_fluid(
+  titlePanel("CensusVis"),
+  layout_columns(
+    card(
+      helpText(
+        "Create demographic graphs with information",
+        "from the 2010 US Census."
+        )
+    ),
+
+    card(
+      card_header("Choose a variable to display"),
+      selectInput(
+        "select",
+        "Select option",
+        choices = list("Percent White" = 1, "Percent Black" = 2, "Percent Hispanic" = 3, "Percent Asian" = 4),
+        selected = 1
+      )
+    ),
+      
+    card(
+      sliderInput(
+        "Choose a variable to display",
+        "Range of Interest",
+        min = 0,
+        max = 100,
+        value=c(0, 100),
+      )
+    )
+  )
+)
+
+# Define server logic ----
+server <- function(input, output) {
+
+}
+
+# Run the app ----
+shinyApp(ui = ui, server = server)
+```
+
+
+```{r}
+fluidPage(
+    
+  # Copy the chunk below to make a group of checkboxes
+  checkboxGroupInput("checkGroup", label = h3("Checkbox group"), 
+    choices = list("Choice 1" = 1, "Choice 2" = 2, "Choice 3" = 3),
+    selected = 1),
+  
+  
+  hr(),
+  fluidRow(column(3, verbatimTextOutput("value")))
+  
+)
+```
+
+
+
+#LESSON 4
+
+```{r}
+library(shiny)
+
+# UI
+ui <- fluidPage(
+  titlePanel("censusVis"),
+  sidebarLayout(
+    sidebarPanel(
+      helpText("Create demographic maps with information from the 2010 US Census."),
+      selectInput(
+        "var", 
+        label = "Choose a variable to display",
+        choices = list(
+          "Percent White", "Percent Black", "Percent Hispanic", "Percent Asian"
+        )
+      ),
+      sliderInput("range", 
+                  label = "Range of interest:",
+                  min = 0, max = 100, value = c(0, 100))
+    ),
+    mainPanel(
+      textOutput("selected_var")
+    )
+  )
+)
+```
+
+```{r}
+# Server
+server <- function(input, output) {
+  output$selected_var <- renderText({
+    paste("You have selected", input$var)
+  })
+}
+```
+
+```{r}
+# Run the application
+shinyApp(ui = ui, server = server)
+
+```
+
+```{r}
+library(shiny)
+
+# UI
+ui <- fluidPage(
+  titlePanel("censusVis"),
+  sidebarLayout(
+    sidebarPanel(
+      helpText("Create demographic maps with information from the 2010 US Census."),
+      selectInput(
+        "var", 
+        label = "Choose a variable to display",
+        choices = list(
+          "Percent White", "Percent Black", "Percent Hispanic", "Percent Asian"
+        )
+      ),
+      sliderInput("range", 
+                  label = "Range of interest:",
+                  min = 0, max = 100, value = c(0, 100))
+    ),
+    mainPanel(
+      textOutput("selected_var"), textOutput("min_max")
+    )
+  )
+)
+
+# Server
+server <- function(input, output) {
+  
+  output$selected_var <- renderText({
+    paste("You have selected", input$var)
+  })
+  
+  output$min_max <- renderText({
+    paste("You have chosen a range that goes from", input$range[1], "to", input$range[2])
+  })
+}
+
+# Run the application
+shinyApp(ui = ui, server = server)
+```
+
+#LESSON 5
+
+```{r}
+counties <- readRDS("C:/Users/javie/OneDrive - Universidad Politécnica de Madrid/MASTER/App-1/census-app/data/counties.rds")
+head(counties)
+```
+
+
+```{r}
+library(maps)
+library(mapproj)
+source("C:/Users/javie/OneDrive - Universidad Politécnica de Madrid/MASTER/App-1/census-app/helpers.R")
+counties <- readRDS("C:/Users/javie/OneDrive - Universidad Politécnica de Madrid/MASTER/App-1/census-app/data/counties.rds")
+#percent_map(counties$white, "darkgreen", "% White")
+```
+
+
+```{r}
+# Load the counties map data
+counties_map <- map_data("county")
+
+# Inspect the structure of your counties_map to find the common key
+head(counties_map)
+
+# Assuming 'region' and 'subregion' in counties_map correspond to state and county names
+# You may need to create a combined column in your `counties` data for matching
+counties <- counties %>%
+  mutate(region = tolower(str_extract(name, "^[^,]+")),       # Extract state name
+         subregion = tolower(str_extract(name, "(?<=,).*")))  # Extract county name
+
+# Now merge the map data with the counties data
+merged_data <- counties_map %>%
+  left_join(counties, by = c("region", "subregion"))
+
+# Now plot the map
+ggplot(merged_data, aes(long, lat, group = group, fill = white)) +
+  geom_polygon(color = "black") +
+  scale_fill_gradient(low = "white", high = "darkgreen") +
+  labs(title = "% White Population") +
+  theme_void()
+
+```
+
+```{r}
+# User interface ----
+ui <- page_sidebar(
+  title = "censusVis",
+  sidebar = sidebar(
+    helpText(
+      "Create demographic maps with information from the 2010 US Census."
+    ),
+    selectInput(
+      "var",
+      label = "Choose a variable to display",
+      choices =
+        c(
+          "Percent White",
+          "Percent Black",
+          "Percent Hispanic",
+          "Percent Asian"
+        ),
+      selected = "Percent White"
+    ),
+    sliderInput(
+      "range",
+      label = "Range of interest:",
+      min = 0,
+      max = 100,
+      value = c(0, 100)
+    )
+  ),
+  card(plotOutput("map"))
+)
+```
+
+
+```{r}
+# Server logic ----
+server <- function(input, output) {
+  output$map <- renderPlot({
+    data <- switch(input$var,
+                   "Percent White" = counties$white,
+                   "Percent Black" = counties$black,
+                   "Percent Hispanic" = counties$hispanic,
+                   "Percent Asian" = counties$asian)
+
+    color <- switch(input$var,
+                    "Percent White" = "darkgreen",
+                    "Percent Black" = "black",
+                    "Percent Hispanic" = "darkorange",
+                    "Percent Asian" = "darkviolet")
+
+    legend <- switch(input$var,
+                     "Percent White" = "% White",
+                     "Percent Black" = "% Black",
+                     "Percent Hispanic" = "% Hispanic",
+                     "Percent Asian" = "% Asian")
+
+    percent_map(data, color, legend, input$range[1], input$range[2])
+  })
+}
+```
+
+
+```{r}
+# Run app ----
+shinyApp(ui, server)
+```
+
+#LESSON 6
+
+```{r}
+runApp("stockVis")
+```
+
+
