@@ -1,9 +1,9 @@
-Installing EDAspy
+# Installing EDAspy
 Here you can find a detailed installation guide to use EDAspy. Please, follow carefully the next steps in order to reduce the number of errors during the installation. We have found issues installing PyBNesian library. Thus, following steps include the installation of C++ and GPU tools.
 
 We acknowledge all the members from Computational Intelligence Group (UPM) for further discussions related to the installation procedure.
 
-Contents
+## Contents
 Ubuntu and Linux sub-systems
 Windows
 Installation issues
