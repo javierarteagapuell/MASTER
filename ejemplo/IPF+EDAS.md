@@ -1,3 +1,18 @@
+## Ejemplo de Tabla de Contingencia
+
+Una tabla de contingencia [1] es una representación tabular que muestra la frecuencia conjunta de dos variables categóricas. Cada celda indica el número de hogares que pertenecen simultáneamente a una categoría de cada variable, mientras que las sumas por fila y columna representan los márgenes totales.
+
+Por ejemplo, el siguiente cuadro relaciona el número de vehículos por hogar con el tamaño del hogar:
+
+| Nº Vehículos / Hogar | Pequeño | Mediano | Grande | Total |
+|---------------------|---------|---------|--------|-------|
+| Sin vehículo        | 12      | 15      | 30     | 57    |
+| 1 vehículo          | 16      | 22      | 48     | 86    |
+| 2+ vehículos        | 14      | 21      | 22     | 57    |
+| **Total**           | 42      | 58      | 100    | 200   |
+
+En este ejemplo, el objetivo del ajuste sería modificar ligeramente las celdas internas de la tabla para que coincidan con unos márgenes externos preestablecidos. En el caso multidimensional, la lógica es la misma, pero se extiende a más de dos variables (por ejemplo, tamaño del hogar, número de vehículos y salario), lo que da lugar a estructuras más complejas llamadas tensores, en lugar de matrices bidimensionales simples.
+
 # Ejemplo Ilustrativo de Ajuste Bidimensional mediante IPF y EDA
 
 Supongamos que deseamos ajustar la tabla anterior para cumplir con unos márgenes objetivo diferentes a los observados. Imaginemos que disponemos de datos separados sobre el número total de hogares según el tamaño del hogar y, por otro lado, el número total de hogares según el número de vehículos que poseen. El objetivo es estimar la distribución conjunta de hogares por tamaño y número de vehículos, ajustando dicha distribución para que los cumpla.
