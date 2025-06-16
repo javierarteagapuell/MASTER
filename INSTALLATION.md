@@ -33,7 +33,7 @@ Before installing EDAspy, ensure that all the dependencies are already installed
 pip install EDAspy
 If no errors were raised, then the software is ready to be used. Otherwise, please restart the process or raise an issue in the repository.
 
-Windows
+# Windows
 Sometimes, in order to reduce possible inconvenient regarding Windows OS, a Linux sub-system is installed (https://learn.microsoft.com/es-es/windows/wsl/install). If this was the case, please go to Ubuntu and Linux sub-systems section. Otherwise, please follow the next steps.
 
 Download Visual Studio 2022 from https://visualstudio.microsoft.com/es/vs/
@@ -51,7 +51,7 @@ Download developer tools for GPU.
 
 Download OpenCL for windows. This guide explains the installation process: https://windowsreport.com/opencl-install-windows-11/
 
-Install EDAspy
+# Install EDAspy
 
 Installing from source
 To install from source, we will download git to be able to download the repository from GitHub.
@@ -63,13 +63,13 @@ git clone https://github.com/VicentePerezSoloviev/EDAspy.git
 cd EDAspy
 pip install -r requirements.txt
 python setup.py install
-Installing directly from PyPi
+#Installing directly from PyPi
 Before installing EDAspy, ensure that all the dependencies are already installed in your Python environment.
 
 pip install EDAspy
 If no errors were raised, then the software is ready to be used. Otherwise, please restart the process or raise an issue in the repository.
 
-Installation issues
+#Installation issues
 Please refer to Installation discussion section to discuss further issues with the developer community.
 
 If default Ubuntu and Linux sub-systems installation fails, there might be necessary to install GPU toolkits for Linux. Please, visit https://developer.nvidia.com/cuda-downloads for Nvidia, and https://www.intel.com/content/www/us/en/developer/tools/oneapi/toolkits.html for Intel.
