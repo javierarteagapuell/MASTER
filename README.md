@@ -20,7 +20,3 @@ Se ha usado la librería [EDAspy](https://github.com/VicentePerezSoloviev/EDAspy
 - Resultados y gráficos generados durante el análisis.  
 - Documentación técnica y explicativa.  
 
-## Requisitos
-
-El proyecto está desarrollado en Python 3.8+ y utiliza las siguientes librerías principales:
-
