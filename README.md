@@ -1,4 +1,4 @@
-# Trabajo de Fin de Máster: Optimización Estadística con Algoritmos de Estimación de Distribución (EDAs)
+# Trabajo de Fin de Máster: Algoritmos de Estimaciones de Distribuciones Aplicados al Algoritmo Iterative Proportional Fitting
 
 Este repositorio contiene el código, documentación y recursos asociados a mi Trabajo de Fin de Máster realizado en el Máster en Data Science de la Universidad Politécnica de Madrid.
 
